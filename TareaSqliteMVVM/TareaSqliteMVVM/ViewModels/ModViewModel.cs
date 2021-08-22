@@ -118,24 +118,35 @@ namespace TareaSqliteMVVM.ViewModels
                 await Page.DisplayAlert("Mensaje", "Los Datos se han capturado", "Ok");
 
                 Int32 resultado = 0;
-                var empleado = new Empleados
-                {
-                    Nombre = Nombre,
-                    Apellido = Apellido,
-                    Edad = Edad,
-                    Direccion = Direccion,
-                    Puesto = Puesto
-                };
+                
 
-                using (SQLiteConnection conexion = new SQLiteConnection(App.EmpleadosDB))
+                if (listaselected != null)
                 {
-                    conexion.CreateTable<Empleados>();
-                    resultado = conexion.Insert(empleado);
+                    string x = Convert.ToString(listaselected.idEmpleado);
 
-                    if (resultado > 0)
-                        Page.DisplayAlert("Aviso", "Adicionado", "Ok");
-                    else
-                        Page.DisplayAlert("Aviso", "Error", "Ok");
+                    try
+                    {
+                        SQLiteConnection conexion = new SQLiteConnection(App.EmpleadosDB);
+                        var borrarpersonas = conexion.Query<Empleados>($"UPDATE Empleados SET Nombre = '" + Nombre + "', Apellido = '" + Apellido + "', Edad = '" + Edad + "', Direccion = '" + Direccion + "', Puesto = '" + Puesto + "' WHERE idEmpleado= '" + x + "' ");
+                        conexion.Close();
+
+                        await Page.DisplayAlert("Aviso", "Modificacion Exitosa" , "Ok");
+                    
+                        await Page.Navigation.PushAsync(new MainPage());
+                    }
+                    catch(Exception e)
+                    {
+                        await Page.DisplayAlert("Aviso", "Error: "+e, "Ok"); 
+                    }
+
+
+
+                }
+                else
+                {
+                    Page.DisplayAlert("Aviso", "No ha seleccionado ningun elemento para Modificar!", "Ok");
+
+
                 }
 
             }

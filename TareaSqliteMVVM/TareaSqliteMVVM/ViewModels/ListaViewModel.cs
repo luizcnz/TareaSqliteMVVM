@@ -64,17 +64,23 @@ namespace TareaSqliteMVVM.ViewModels
 
         private async void DeleteCommand()
         {
-
+            
             if (_yourSelectedItem != null)
             {
-                string x = Convert.ToString(_yourSelectedItem.idEmpleado);
-                Page.DisplayAlert("Aviso", "" + _yourSelectedItem.Nombre+" "+ _yourSelectedItem.Apellido + " ha sido eliminado de la lista de Empleados", "Ok");
+                bool answer = await Page.DisplayAlert("Question?", "Seguro desea elminiar el Empleado: "+ _yourSelectedItem.Nombre + " " + _yourSelectedItem.Apellido + "?", "Si", "No");
 
-                SQLiteConnection conexion = new SQLiteConnection(App.EmpleadosDB);
-                var borrarpersonas = conexion.Query<Empleados>($"Delete FROM Empleados WHERE idEmpleado= '" + x + "' ");
-                conexion.Close();
+                if (answer == true)
+                {
+                    string x = Convert.ToString(_yourSelectedItem.idEmpleado);
+                    Page.DisplayAlert("Aviso", "" + _yourSelectedItem.Nombre + " " + _yourSelectedItem.Apellido + " ha sido eliminado de la lista de Empleados", "Ok");
 
-                await Page.Navigation.PushAsync(new MainPage());
+                    SQLiteConnection conexion = new SQLiteConnection(App.EmpleadosDB);
+                    var borrarpersonas = conexion.Query<Empleados>($"Delete FROM Empleados WHERE idEmpleado= '" + x + "' ");
+                    conexion.Close();
+
+                    await Page.Navigation.PushAsync(new MainPage());
+                }
+                
             }
             else
             {

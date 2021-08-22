@@ -67,8 +67,8 @@
             <StackLayout Margin="10,0">
                 <Label TextColor="Aqua" Text="Seleccion un elemento" x:Name="seleccionado" HorizontalOptions="Center" FontSize="25"/>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
-                    <Button  x:Name="Mapa" Text="Modificar" 
-                                            BackgroundColor="#af95cf" Margin="10,0,10,0" FontSize="12" Command="{Binding UpdateCommand}"/>
+                    <!--<Button  x:Name="Mapa" Text="Modificar" 
+                                            BackgroundColor="#af95cf" Margin="10,0,10,0" FontSize="12" Command="{Binding UpdateCommand}"/>-->
 
                     <Button  x:Name="Borrar" Text="Borrar Datos" 
                                             BackgroundColor="#af95cf" Margin="10,0,10,0" FontSize="12" Command="{Binding BorrarCommand}"/>
