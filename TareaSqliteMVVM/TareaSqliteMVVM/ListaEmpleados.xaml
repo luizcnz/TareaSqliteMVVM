@@ -7,7 +7,7 @@
 
 
 
-            <ListView x:Name="ListaRecibos" ItemsSource="{Binding ListaEmpleados}" SelectedItem="{Binding YourSelectedItem, Mode=TwoWay}"  RowHeight="200" BackgroundColor="#000000" SeparatorColor="#8D66F3">
+            <ListView x:Name="ListaRecibos" ItemsSource="{Binding ListaEmpleados}" SelectedItem="{Binding YourSelectedItem, Mode=TwoWay}"  RowHeight="170" BackgroundColor="#000000" SeparatorColor="#8D66F3">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

@@ -65,21 +65,21 @@ namespace TareaSqliteMVVM.ViewModels
         private async void DeleteCommand()
         {
 
-            //if (_yourSelectedItem != null)
-            //{
-            //    string x = Convert.ToString(_yourSelectedItem.id_pago);
-            //    Page.DisplayAlert("Aviso", "" + _yourSelectedItem.Descripcion + " ha sido eliminado de la lista de Pagos", "Ok");
+            if (_yourSelectedItem != null)
+            {
+                string x = Convert.ToString(_yourSelectedItem.idEmpleado);
+                Page.DisplayAlert("Aviso", "" + _yourSelectedItem.Nombre+" "+ _yourSelectedItem.Apellido + " ha sido eliminado de la lista de Empleados", "Ok");
 
-            //    SQLiteConnection conexion = new SQLiteConnection(App.EmpleadosDB);
-            //    var borrarpersonas = conexion.Query<Empleados>($"Delete FROM Pagos WHERE id_pago = '" + x + "' ");
-            //    conexion.Close();
+                SQLiteConnection conexion = new SQLiteConnection(App.EmpleadosDB);
+                var borrarpersonas = conexion.Query<Empleados>($"Delete FROM Empleados WHERE idEmpleado= '" + x + "' ");
+                conexion.Close();
 
-            //    await Page.Navigation.PushAsync(new MainPage());
-            //}
-            //else
-            //{
-            //    Page.DisplayAlert("Aviso", "No ha seleccionado ningun elemento para borrar!", "Ok");
-            //}
+                await Page.Navigation.PushAsync(new MainPage());
+            }
+            else
+            {
+                Page.DisplayAlert("Aviso", "No ha seleccionado ningun elemento para borrar!", "Ok");
+            }
 
 
 
@@ -92,35 +92,7 @@ namespace TareaSqliteMVVM.ViewModels
 
         private async void ActCommand()
         {
-
-            //if (_yourSelectedItem != null)
-            //{
-            //    string x = Convert.ToString(_yourSelectedItem.id_pago);
-
-            //    Page.DisplayAlert("Aviso", "" + _yourSelectedItem.Descripcion + " ha sido seleccionado de la lista de pagos", "Ok");
-
-            //    var pago = new Empleados
-            //    {
-            //        Descripcion = _yourSelectedItem.Descripcion,
-            //        Monto = _yourSelectedItem.Monto,
-            //        Fecha = _yourSelectedItem.Fecha,
-            //        Photo_recibo = _yourSelectedItem.Photo_recibo,
-            //        foto_ruta = _yourSelectedItem.foto_ruta
-
-
-            //    };
-            //    var datos = new MainPage();
-            //    datos.BindingContext = pago;
-            //    await Page.Navigation.PushAsync(datos);
-
-            //}
-            //else
-            //{
-            //    Page.DisplayAlert("Aviso", "No ha seleccionado ningun elemento para Modificar!", "Ok");
-
-
-            //}
-
+            await Page.Navigation.PushAsync(new Modificar());
 
         }
 

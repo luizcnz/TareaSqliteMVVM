@@ -9,6 +9,12 @@
             Order="Primary"
             Priority="0"
             Command="{Binding ListaCommand}"/>
+    
+        <ToolbarItem 
+            Text="Actualizar" x:Name="Actualizar"
+            Order="Primary"
+            Priority="0"
+            Command="{Binding ActCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ScrollView 

@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace TareaSqliteMVVM.ViewModels
 {
-    class CreateViewModel : BaseViewModel
+    class ModViewModel : BaseViewModel
     {
         public Command ListaCommand { get; }
         public Command ActCommand { get; }
@@ -17,12 +17,27 @@ namespace TareaSqliteMVVM.ViewModels
 
         Page Page;
 
+        List<Empleados> listaempleados;
+        Empleados listaselected;
+
         int id;
         string nombre;
         string apellido;
         int edad;
         string direccion;
         string puesto;
+
+        public Empleados ListaSelected
+        {
+            get => listaselected;
+            set { SetProperty(ref listaselected, value); fillEntrys(); }
+        }
+
+        public List<Empleados> ListaEmpleados
+        {
+            get => listaempleados;
+            set { SetProperty(ref listaempleados, value); }
+        }
 
         public int ID
         {
@@ -60,7 +75,7 @@ namespace TareaSqliteMVVM.ViewModels
         }
 
 
-        public CreateViewModel(Page pag)
+        public ModViewModel(Page pag)
         {
             Page = pag;
 
@@ -69,16 +84,27 @@ namespace TareaSqliteMVVM.ViewModels
             Cargar();
 
             EnviarCommand = new Command(OnSaveClicked);
-            ListaCommand = new Command(VerListaCommand);
-            ActCommand = new Command(UpdateClicked);
         }
 
         private async Task Cargar()
         {
             //Cargo = Puestos.ObtenerCargos().OrderBy(c => c.value).ToList();
 
+            SQLiteConnection conexion = new SQLiteConnection(App.EmpleadosDB);
+            conexion.CreateTable<Empleados>();
+            ListaEmpleados = conexion.Table<Empleados>().ToList();
+
         }
 
+        private async void fillEntrys()
+        {
+            Nombre = listaselected.Nombre;
+            Apellido = listaselected.Apellido;
+            Edad = listaselected.Edad;
+            Direccion = listaselected.Direccion;
+            Puesto = listaselected.Puesto;
+
+        }
 
         public async void OnSaveClicked(object obj)
         {
@@ -116,15 +142,6 @@ namespace TareaSqliteMVVM.ViewModels
 
         }
 
-        public async void VerListaCommand(object obj)
-        {
-            await Page.Navigation.PushAsync(new ListaEmpleados());
-        }
-
-
-        public async void UpdateClicked(object obj)
-        {
-            await Page.Navigation.PushAsync(new Modificar());
-        }
+       
     }
 }
