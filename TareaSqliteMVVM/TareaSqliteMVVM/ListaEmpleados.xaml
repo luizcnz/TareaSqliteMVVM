@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TareaSqliteMVVM.ListaEmpleados">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#000000">
+
+
+
+            <ListView x:Name="ListaRecibos" ItemsSource="{Binding ListaEmpleados}" SelectedItem="{Binding YourSelectedItem, Mode=TwoWay}"  RowHeight="200" BackgroundColor="#000000" SeparatorColor="#8D66F3">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Background="#1b1b1b" Padding="20,10,20,10" >
+
+                                <Label 
+                                       TextColor="Aqua" Text="{Binding idEmpleado}" IsVisible="False" />
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                                    <Label Grid.Row="1"  Grid.Column="2"
+                                           TextColor="Aqua" Text="Nombre: " FontSize="16"/>
+
+                                    <Label Grid.Row="2" Grid.Column="2"
+                                           TextColor="Aqua" Text="{Binding Nombre}" FontSize="16"/>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                                    <Label Grid.Row="1"  Grid.Column="2"
+                                           TextColor="Aqua" Text="Apellido: " FontSize="16"/>
+
+                                    <Label Grid.Row="2" Grid.Column="2"
+                                           TextColor="Aqua" Text="{Binding Apellido}" FontSize="16"/>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                                    <Label Grid.Row="1"  Grid.Column="2"
+                                           TextColor="Aqua" Text="Edad: " FontSize="16"/>
+
+                                    <Label Grid.Row="2" Grid.Column="2"
+                                           TextColor="Aqua" Text="{Binding Edad}" FontSize="16"/>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                                    <Label Grid.Row="1"  Grid.Column="2"
+                                           TextColor="Aqua" Text="Direccion: " FontSize="16"/>
+
+                                    <Label Grid.Row="2" Grid.Column="2"
+                                           TextColor="Aqua" Text="{Binding Direccion}" FontSize="16"/>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                                    <Label Grid.Row="1"  Grid.Column="2"
+                                           TextColor="Aqua" Text="Puesto: " FontSize="16"/>
+
+                                    <Label Grid.Row="2" Grid.Column="2"
+                                           TextColor="Aqua" Text="{Binding Puesto}" FontSize="16"/>
+                                </StackLayout>
+
+
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackLayout Margin="10,0">
+                <Label TextColor="Aqua" Text="Seleccion un elemento" x:Name="seleccionado" HorizontalOptions="Center" FontSize="25"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
+                    <Button  x:Name="Mapa" Text="Modificar" 
+                                            BackgroundColor="#af95cf" Margin="10,0,10,0" FontSize="12" Command="{Binding UpdateCommand}"/>
+
+                    <Button  x:Name="Borrar" Text="Borrar Datos" 
+                                            BackgroundColor="#af95cf" Margin="10,0,10,0" FontSize="12" Command="{Binding BorrarCommand}"/>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

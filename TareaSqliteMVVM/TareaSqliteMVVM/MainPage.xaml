@@ -3,22 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TareaSqliteMVVM.MainPage">
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="Ver Lista" x:Name="lista"
+            Order="Primary"
+            Priority="0"
+            Command="{Binding ListaCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView 
+        BackgroundColor="#000000">
+
+        <Frame BackgroundColor="#1b1b1b" Margin="30,20,30,0" CascadeInputTransparent="True" CornerRadius="20" BorderColor="#937FFF" >
+            <StackLayout>
+
+
+
+
+                <Entry Text="{Binding ID, Mode=TwoWay}" FontSize="18"  TextColor="Black" x:Name="ID" IsVisible="false" />
+
+                <Label Text="Nombre" FontSize="18" Padding="10,10,30,5" TextColor="#af95cf"/>
+                <Frame BackgroundColor="#FF9D85FF" CornerRadius="15" HasShadow="False">
+                    <Entry Text="{Binding Nombre, Mode=TwoWay}" FontSize="18"  TextColor="Black" x:Name="nom" Keyboard="Default" Placeholder="" PlaceholderColor="Black" Margin="-15" MaxLength="50"/>
+                </Frame>
+
+                <Label Text="Apellido" FontSize="18" Padding="10,10,30,5" TextColor="#af95cf"/>
+                <Frame BackgroundColor="#FF9D85FF" CornerRadius="15" HasShadow="False">
+                    <Entry Text="{Binding Apellido, Mode=TwoWay}" FontSize="18"  TextColor="Black" x:Name="apel" Keyboard="Default" Placeholder="" PlaceholderColor="Black" Margin="-15" MaxLength="50"/>
+                </Frame>
+
+                <Label Text="Edad" FontSize="18" Padding="10,10,30,5" TextColor="#af95cf"/>
+                <Frame BackgroundColor="#FF9D85FF" CornerRadius="15" HasShadow="False">
+                    <Entry Text="{Binding Edad, Mode=TwoWay}" FontSize="18"  TextColor="Black" x:Name="edad" Keyboard="Numeric" Placeholder="" PlaceholderColor="Black" Margin="-15" MaxLength="50"/>
+                </Frame>
+
+                <Label Text="Direccion" FontSize="18" Padding="10,10,30,5" TextColor="#af95cf"/>
+                <Frame BackgroundColor="#FF9D85FF" CornerRadius="15" HasShadow="False">
+                    <Entry Text="{Binding Direccion, Mode=TwoWay}" FontSize="18"  TextColor="Black" x:Name="dir"  Placeholder="" PlaceholderColor="Black" Margin="-15" MaxLength="50"/>
+                </Frame>
+
+                <Label Text="Puesto" FontSize="18" Padding="10,10,30,5" TextColor="#af95cf"/>
+                <Frame BackgroundColor="#FF9D85FF" CornerRadius="15" HasShadow="False">
+                    <Entry Text="{Binding Puesto, Mode=TwoWay}" FontSize="18"  TextColor="Black" x:Name="puesto"  Placeholder="" PlaceholderColor="Black" Margin="-15" MaxLength="50"/>
+                </Frame>
+
+                <Label Text="" FontSize="10" Padding="10,10,10,10" TextColor="#af95cf"/>
+
+                <Button x:Name="BTN_Enviar"  
+                        Text="Enviar Datos" 
+                        BackgroundColor="#af95cf" 
+                        Margin="70,0,70,0"
+                        FontSize="20"
+                        Command="{Binding EnviarCommand}"/>
+
+                
+
+
+            </StackLayout>
         </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-    </StackLayout>
+
+    </ScrollView>
 
 </ContentPage>

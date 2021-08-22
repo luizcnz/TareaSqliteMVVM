@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,12 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace TareaSqliteMVVM
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : ContentPage
+    public partial class ListaEmpleados : ContentPage
     {
-        public MainPage()
+        public ListaEmpleados()
         {
             InitializeComponent();
-            BindingContext = new CreateViewModel(this);
+            BindingContext = new ListaViewModel(this);
         }
     }
 }
